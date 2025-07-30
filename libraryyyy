@@ -1,0 +1,107 @@
+#include<iostream>
+using namespace std;
+struct Book
+{
+    string Title;
+    string Author;
+    int Id;
+    int price;
+    
+};
+string toLowerCase(string str) {
+    for (int i = 0; i < str.length(); i++) {
+        str[i] = tolower(str[i]);
+    }
+    return str;
+}
+
+int main()
+{
+    
+int n;
+cout<<"How Many Book You Want to Enter"<<endl;
+    cin>>n;
+Book b[n];
+    for(int i=0;i<n;i++)
+    {
+   cout<<"Enter Book -> "<<i+1<<" <- ID: ";
+cin>>b[i].Id;
+cin.ignore();
+    cout<<"Enter Book Title: ";
+    getline(cin,b[i].Title);
+    cout<<"Enter Book Author: ";
+    getline(cin,b[i].Author);
+    cout<<"Enter Price: ";
+    cin>>b[i].price;
+    cout<<endl;
+        
+    }
+    cout<<"=================================="<<endl;
+    cout<<"-----------Book---Records---------"<<endl;
+    cout<<"=================================="<<endl;
+    for(int i=0;i<n;i++)
+    {
+                cout<<"->ID: "<<b[i].Id<<endl;
+   cout<<"->Title: "<<b[i].Title<<endl;
+        cout<<"->Author: "<<b[i].Author<<endl;
+        cout<<"->Price: $"<<b[i].price<<endl;
+        cout<<endl;
+    }
+    int updateId;
+ string SearchT;
+    int option;
+ cout<<"Enter Book ->Title <- Or -> ID <- TO SEARCH"<<endl;
+ cout<<"Choose -> (1) For Title OR ->(2) For ID SEARCH"<<endl;
+ cin>>option;
+ cin.ignore();
+  bool found = false;
+ switch(option)
+ {
+     case 1:
+      cout << "\nEnter a Book Title to Search: ";
+    getline(cin,SearchT);
+
+   
+    for (int i = 0; i < n; i++) {
+        if (toLowerCase(b[i].Title) == toLowerCase(SearchT)) 
+            cout << "\n--- Book Found ---\n";
+            cout << "ID     : " << b[i].Id << endl;
+            cout << "Title  : " << b[i].Title << endl;
+            cout << "Author : " << b[i].Author << endl;
+            cout << "Price  : $" << b[i].price << endl;
+            found = true;
+            break;
+        
+ }
+ case 2:
+ 
+cout << "\nEnter Book ID to Update: ";
+cin >> updateId;
+
+bool updated = false;
+for (int i = 0; i < n; i++) {
+    if (b[i].Id == updateId) {
+        cin.ignore();  // Clear newline
+        cout << "Enter new Title: ";
+        getline(cin, b[i].Title);
+        cout << "Enter new Author: ";
+        getline(cin, b[i].Author);
+        cout << "Enter new Price: ";
+        cin >> b[i].price;
+
+        cout << "\n✅ Book details updated successfully!\n";
+        updated = true;
+        break;
+    }
+}
+
+if (!updated) {
+    cout << "\n❌ Book with ID " << updateId << " not found.\n";
+}
+
+     
+ }
+ 
+ 
+    return 0;
+}
