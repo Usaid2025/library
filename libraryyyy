@@ -54,6 +54,7 @@ cin.ignore();
  cout<<"Choose -> (1) For Title OR ->(2) For ID SEARCH"<<endl;
  cin>>option;
  cin.ignore();
+ int SearchI;
   bool found = false;
  switch(option)
  {
@@ -75,33 +76,27 @@ cin.ignore();
  }
  case 2:
  
-cout << "\nEnter Book ID to Update: ";
-cin >> updateId;
+cout << "\nEnter Book ID to Search ";
 
-bool updated = false;
+cin >> SearchI;
 for (int i = 0; i < n; i++) {
-    if (b[i].Id == updateId) {
-        cin.ignore();  // Clear newline
-        cout << "Enter new Title: ";
-        getline(cin, b[i].Title);
-        cout << "Enter new Author: ";
-        getline(cin, b[i].Author);
-        cout << "Enter new Price: ";
-        cin >> b[i].price;
-
-        cout << "\n✅ Book details updated successfully!\n";
-        updated = true;
+    if (b[i].Id == SearchI) {
+        cout << "\n--- Book Found ---\n";
+        cout << "ID     : " << b[i].Id << endl;
+        cout << "Title  : " << b[i].Title << endl;
+        cout << "Author : " << b[i].Author << endl;
+        cout << "Price  : $" << b[i].price << endl;
+        found = true;
         break;
     }
 }
 
-if (!updated) {
-    cout << "\n❌ Book with ID " << updateId << " not found.\n";
+if (!found) {
+    cout << "❌ Book Not Found by ID.\n";
+}
 }
 
-     
- }
- 
+
  
     return 0;
 }
